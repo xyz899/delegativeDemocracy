@@ -42,7 +42,7 @@ describe("Governor Flow", async () => {
     )
 
     const proposeReceipt = await proposeTx.wait(1)
-    const proposalId = proposeReceipt.events![0].args!.proposalId
+    const proposalId = proposeReceipt.event[0].args.proposalId
     let proposalState = await governor.state(proposalId)
     console.log(`Current Proposal State: ${proposalState}`)
 

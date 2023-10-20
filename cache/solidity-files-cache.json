@@ -1988,8 +1988,8 @@
       ]
     },
     "C:\\Users\\miste\\Documents\\Programming\\DAO\\DAO_DLD\\contracts\\stdGovernance\\GovernorD4C.sol": {
-      "lastModificationDate": 1697703347245,
-      "contentHash": "af64c998448e283635102f20d32f2306",
+      "lastModificationDate": 1697815060567,
+      "contentHash": "f34e569bba839deaedf7ec8b681f8e3b",
       "sourceName": "contracts/stdGovernance/GovernorD4C.sol",
       "solcConfig": {
         "version": "0.8.20",
