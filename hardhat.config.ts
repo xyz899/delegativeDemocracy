@@ -7,6 +7,8 @@ import "@nomiclabs/hardhat-ethers";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
 import "hardhat-deploy";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 
 const config: HardhatUserConfig = {

@@ -3,4 +3,3 @@
 /* eslint-disable */
 export { GovernorD4C__factory } from "./GovernorD4C__factory";
 export { Timelock__factory } from "./Timelock__factory";
-export { TimelockController__factory } from "./TimelockController__factory";

@@ -3,4 +3,3 @@
 /* eslint-disable */
 export type { GovernorD4C } from "./GovernorD4C";
 export type { Timelock } from "./Timelock";
-export type { TimelockController } from "./TimelockController";

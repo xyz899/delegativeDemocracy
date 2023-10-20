@@ -1,4 +1,4 @@
-import { GovernorContract, GovernanceToken, TimeLock, Box } from "../../typechain-types"
+import { GovernorD4C, DirtyDeedsToken, Timelock, Box } from "../typechain-types"
 import { deployments, ethers } from "hardhat"
 import { assert, expect } from "chai"
 import {
@@ -8,14 +8,14 @@ import {
   VOTING_DELAY,
   VOTING_PERIOD,
   MIN_DELAY,
-} from "../../helper-hardhat-config"
-import { moveBlocks } from "../../utils/move-blocks"
-import { moveTime } from "../../utils/move-time"
+} from "../helper-hardhat-config"
+import { moveBlocks } from "../utils/move-blocks"
+import { moveTime } from "../utils/move-time"
 
 describe("Governor Flow", async () => {
-  let governor: GovernorContract
-  let governanceToken: GovernanceToken
-  let timeLock: TimeLock
+  let governor: GovernorD4C
+  let governanceToken: DirtyDeedsToken
+  let timeLock: Timelock
   let box: Box
   const voteWay = 1 // for
   const reason = "I lika do da cha cha"
@@ -35,7 +35,7 @@ describe("Governor Flow", async () => {
     // propose
     const encodedFunctionCall = box.interface.encodeFunctionData(FUNC, [NEW_STORE_VALUE])
     const proposeTx = await governor.propose(
-      [box.address],
+      [box.target],
       [0],
       [encodedFunctionCall],
       PROPOSAL_DESCRIPTION
@@ -57,8 +57,8 @@ describe("Governor Flow", async () => {
 
     // queue & execute
     // const descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(PROPOSAL_DESCRIPTION))
-    const descriptionHash = ethers.utils.id(PROPOSAL_DESCRIPTION)
-    const queueTx = await governor.queue([box.address], [0], [encodedFunctionCall], descriptionHash)
+    const descriptionHash = ethers.id(PROPOSAL_DESCRIPTION)
+    const queueTx = await governor.getFunction("queue")([box.target], [0], [encodedFunctionCall], descriptionHash)
     await queueTx.wait(1)
     await moveTime(MIN_DELAY + 1)
     await moveBlocks(1)
@@ -68,7 +68,7 @@ describe("Governor Flow", async () => {
 
     console.log("Executing...")
     console.log
-    const exTx = await governor.execute([box.address], [0], [encodedFunctionCall], descriptionHash)
+    const exTx = await governor.getFunction("execute")([box.target], [0], [encodedFunctionCall], descriptionHash)
     await exTx.wait(1)
     console.log((await box.retrieve()).toString())
   })

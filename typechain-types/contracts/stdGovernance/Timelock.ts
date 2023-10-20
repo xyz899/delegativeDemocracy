@@ -49,7 +49,6 @@ export interface TimelockInterface extends Interface {
       | "onERC1155Received"
       | "onERC721Received"
       | "renounceRole"
-      | "revokeAdminRole"
       | "revokeRole"
       | "schedule"
       | "scheduleBatch"
@@ -165,10 +164,6 @@ export interface TimelockInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "revokeAdminRole",
-    values: [AddressLike]
-  ): string;
-  encodeFunctionData(
     functionFragment: "revokeRole",
     values: [BytesLike, AddressLike]
   ): string;
@@ -281,10 +276,6 @@ export interface TimelockInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "renounceRole",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "revokeAdminRole",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
@@ -629,12 +620,6 @@ export interface Timelock extends BaseContract {
     "nonpayable"
   >;
 
-  revokeAdminRole: TypedContractMethod<
-    [admin: AddressLike],
-    [void],
-    "nonpayable"
-  >;
-
   revokeRole: TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
@@ -828,9 +813,6 @@ export interface Timelock extends BaseContract {
     [void],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "revokeAdminRole"
-  ): TypedContractMethod<[admin: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "revokeRole"
   ): TypedContractMethod<

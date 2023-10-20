@@ -201,10 +201,6 @@ declare module "hardhat/types/runtime" {
       name: "Timelock",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Timelock__factory>;
-    getContractFactory(
-      name: "TimelockController",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TimelockController__factory>;
 
     getContractAt(
       name: "AccessControl",
@@ -441,11 +437,6 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Timelock>;
-    getContractAt(
-      name: "TimelockController",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TimelockController>;
 
     deployContract(
       name: "AccessControl",
@@ -635,10 +626,6 @@ declare module "hardhat/types/runtime" {
       name: "Timelock",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Timelock>;
-    deployContract(
-      name: "TimelockController",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TimelockController>;
 
     deployContract(
       name: "AccessControl",
@@ -875,11 +862,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Timelock>;
-    deployContract(
-      name: "TimelockController",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TimelockController>;
 
     // default types
     getContractFactory(

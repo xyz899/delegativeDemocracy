@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./TimelockController.sol";
+ // @openzeppelin/contracts/governance/ 
+import "@openzeppelin/contracts/governance/TimelockController.sol";
 
 contract Timelock is TimelockController {
     constructor(
@@ -11,11 +12,7 @@ contract Timelock is TimelockController {
         address admin
     ) TimelockController(minDelay, proposers, executors, admin){}
 
-    function revokeAdminRole(address admin) public {
-        require(hasRole(DEFAULT_ADMIN_ROLE, admin), "Caller is not an admin");
-        revokeRole(DEFAULT_ADMIN_ROLE, admin);
-    }
-
-
     
+
+
 }
