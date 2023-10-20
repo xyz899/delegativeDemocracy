@@ -1,10 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/dist/types";
 import { ethers } from "hardhat";
-import {
-  VOTING_DELAY,
-  VOTING_PERIOD,
-} from "../helper-hardhat-config";
+import { VOTING_DELAY, VOTING_PERIOD } from "../helper-hardhat-config";
 
 const deployGovernor: DeployFunction = async (
   hre: HardhatRuntimeEnvironment
@@ -14,15 +11,15 @@ const deployGovernor: DeployFunction = async (
   const { deployer } = await getNamedAccounts();
   const governanceToken = await get("DirtyDeedsToken");
   const Timelock = await get("Timelock");
-  log("----------------------------------------------------")
+  log("----------------------------------------------------");
 
   const governorContract = await deploy("GovernorD4C", {
     from: deployer,
-    args: [ 
-        governanceToken.address,
-        Timelock.address,
-        VOTING_DELAY,
-        VOTING_PERIOD
+    args: [
+      governanceToken.address,
+      Timelock.address,
+      VOTING_DELAY,
+      VOTING_PERIOD,
     ],
     log: true,
   });

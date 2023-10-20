@@ -2,7 +2,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { ethers } from "hardhat";
 import { ADDRESS_NULL } from "../helper-hardhat-config";
-require('dotenv')
+require("dotenv");
 
 const setupContracts: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
@@ -29,12 +29,12 @@ const setupContracts: DeployFunction = async function (
   // would be great to use multicall here...
 
   //  const proposerRole = await Timelock.PROPOSER_ROLE()
-  const proposerRole = process.env.PROPOSER
+  const proposerRole = process.env.PROPOSER;
 
   // const executorRole = await Timelock.EXECUTOR_ROLE();
-  const executorRole = process.env.EXECUTOR
-  const cancellerRole = process.env.CANCELLER
-  
+  const executorRole = process.env.EXECUTOR;
+  const cancellerRole = process.env.CANCELLER;
+
   // // const adminRole = await Timelock.TIMELOCK_ADMIN_ROLE()
   // // (TIMELOCK_ADMIN_ROLE) has been removed from the last versions of OZ TimelockController.sol
   // // admin is directly in the constructor of Timelock.sol so don't forget to add it in the 02-deploy-timelock.ts args
@@ -44,22 +44,22 @@ const setupContracts: DeployFunction = async function (
     proposerRole,
     await governor.getAddress()
   );
-  await proposerTx.wait(1)
+  await proposerTx.wait(1);
 
   const executorTx = await Timelock.getFunction("grantRole")(
     executorRole,
     ADDRESS_NULL
-  )
+  );
 
-  await executorTx.wait(1)
+  await executorTx.wait(1);
 
   const revokeTx = await Timelock.getFunction("revokeRole")(
     cancellerRole,
     deployer
-  )
-  await revokeTx.wait(1)
+  );
+  await revokeTx.wait(1);
 
   //  log(proposerTx, executorTx, revokeTx)
 };
 
-export default setupContracts
+export default setupContracts;

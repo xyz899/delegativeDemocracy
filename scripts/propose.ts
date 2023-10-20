@@ -5,10 +5,10 @@ import {
   PROPOSAL_DESCRIPTION,
   developmentChains,
   VOTING_DELAY,
-  proposalFiles
+  proposalFiles,
 } from "../helper-hardhat-config";
 import { moveBlocks } from "../utils/move-blocks";
-import * as fs from 'fs'
+import * as fs from "fs";
 
 export async function propose(args: any[], functionToCall: string) {
   const governor = await ethers.getContract("GovernorD4C");
@@ -26,19 +26,18 @@ export async function propose(args: any[], functionToCall: string) {
     PROPOSAL_DESCRIPTION
   );
 
-  const proposeReceipt = await proposeTx.wait(1)
+  const proposeReceipt = await proposeTx.wait(1);
 
-  if (developmentChains.includes(network.name)){
-    await moveBlocks(VOTING_DELAY + 1)
+  if (developmentChains.includes(network.name)) {
+    await moveBlocks(VOTING_DELAY + 1);
   }
 
-  const logs : any = governor.interface.parseLog(proposeReceipt.logs[0]);
+  const logs: any = governor.interface.parseLog(proposeReceipt.logs[0]);
   const proposalId = logs.args.proposalId;
 
-  let proposals = JSON.parse(fs.readFileSync(proposalFiles, "utf-8"))
-  proposals[network.config.chainId!.toString()].push(proposalId.toString())
-  fs.writeFileSync(proposalFiles, JSON.stringify(proposals))
-  
+  let proposals = JSON.parse(fs.readFileSync(proposalFiles, "utf-8"));
+  proposals[network.config.chainId!.toString()].push(proposalId.toString());
+  fs.writeFileSync(proposalFiles, JSON.stringify(proposals));
 }
 
 propose([NEW_STORE_VALUE], FUNC)

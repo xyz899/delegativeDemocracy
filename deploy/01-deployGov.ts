@@ -9,8 +9,7 @@ const deployGovernanceToken: DeployFunction = async (
   const { deploy, log } = deployments;
   const { deployer } = await getNamedAccounts();
 
-  log("----------------------------------------------------")
-
+  log("----------------------------------------------------");
 
   const governanceToken = await deploy("DirtyDeedsToken", {
     from: deployer,
@@ -18,12 +17,10 @@ const deployGovernanceToken: DeployFunction = async (
     log: true,
   });
 
-  log("----------------------------------------------------")
+  log("----------------------------------------------------");
 
-  await delegate(governanceToken.address, deployer)
-  log("Delegated")
-
-
+  await delegate(governanceToken.address, deployer);
+  log("Delegated");
 };
 
 const delegate = async (
@@ -36,10 +33,11 @@ const delegate = async (
   );
   const tx = await governanceTokenDel.delegate(delegatedAccounts);
   await tx.wait(1);
-  console.log(`Checkpoints : ${await governanceTokenDel.numCheckpoints(delegatedAccounts)}`);
-
-  
+  console.log(
+    `Checkpoints : ${await governanceTokenDel.numCheckpoints(
+      delegatedAccounts
+    )}`
+  );
 };
-
 
 export default deployGovernanceToken;
