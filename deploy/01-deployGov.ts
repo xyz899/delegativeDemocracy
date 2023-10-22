@@ -15,6 +15,7 @@ const deployGovernanceToken: DeployFunction = async (
     from: deployer,
     args: [],
     log: true,
+    // waitConfirmations: networkConfig[network.name].blockConfirmations || 1
   });
 
   log("----------------------------------------------------");
