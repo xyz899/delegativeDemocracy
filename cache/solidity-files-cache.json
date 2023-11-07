@@ -1944,8 +1944,8 @@
       ]
     },
     "C:\\Users\\miste\\Documents\\Programming\\DAO\\DAO_DLD\\contracts\\stdGovernance\\Timelock.sol": {
-      "lastModificationDate": 1697795759076,
-      "contentHash": "a45b2a478fdc6baa18840aa3fec9bacf",
+      "lastModificationDate": 1697825398295,
+      "contentHash": "9a21a9595e4f81cd5d89ba6ae4b0fcec",
       "sourceName": "contracts/stdGovernance/Timelock.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -1988,8 +1988,8 @@
       ]
     },
     "C:\\Users\\miste\\Documents\\Programming\\DAO\\DAO_DLD\\contracts\\stdGovernance\\GovernorD4C.sol": {
-      "lastModificationDate": 1697815060567,
-      "contentHash": "f34e569bba839deaedf7ec8b681f8e3b",
+      "lastModificationDate": 1697825396682,
+      "contentHash": "118728dd94403cf2d28280c5ba0d27a8",
       "sourceName": "contracts/stdGovernance/GovernorD4C.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -2039,8 +2039,8 @@
       ]
     },
     "C:\\Users\\miste\\Documents\\Programming\\DAO\\DAO_DLD\\contracts\\DirtyDeedsToken.sol": {
-      "lastModificationDate": 1697703162276,
-      "contentHash": "d2c85382e20ad623382ebab7984da2d1",
+      "lastModificationDate": 1697825400264,
+      "contentHash": "4f4c413c3958c5f1b6d22e1ec06295b3",
       "sourceName": "contracts/DirtyDeedsToken.sol",
       "solcConfig": {
         "version": "0.8.20",
