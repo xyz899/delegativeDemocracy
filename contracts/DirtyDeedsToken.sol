@@ -1,3 +1,4 @@
+// ERC20 contract for Governance Tokens
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -7,12 +8,13 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract DirtyDeedsToken is ERC20, ERC20Votes, ERC20Permit, Ownable {
-    uint256 public s_maxSupply = 1000000000000000000000000;
+    uint256 public s_maxSupply = 1000000000000000000000000; 
 
+    // Added Ownable for Access Control Roles : (MINTER, PAUSER if true, DEFAULT_ADMIN)
     constructor()
         ERC20("DirtyDeedsToken", "D4C")
         ERC20Permit("DirtyDeedsToken")
-        Ownable(msg.sender)
+        Ownable(msg.sender) 
     {
         _mint(msg.sender, s_maxSupply);
     }
