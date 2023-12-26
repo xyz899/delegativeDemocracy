@@ -12,7 +12,8 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 
-
+/// @title GovernorD4C Contract
+/// @dev Comprehensive governance contract integrating multiple OpenZeppelin governance extensions
 contract GovernorD4C is
     Governor,
     GovernorSettings,
@@ -22,6 +23,11 @@ contract GovernorD4C is
     GovernorVotesQuorumFraction,
     GovernorTimelockControl
 {
+     /// @notice Initializes the governor contract with the required parameters
+    /// @param _token The ERC20Votes token used for voting
+    /// @param _timelock The TimelockController contract for time-locked execution
+    /// @param _votingDelay The delay before voting on a proposal may begin
+    /// @param _votingPeriod The duration for which voting is open
     constructor(
         IVotes _token,
         TimelockController _timelock,
@@ -41,6 +47,8 @@ contract GovernorD4C is
 
     // The following functions are overrides required by Solidity.
 
+     /// @notice Returns the current voting delay
+    /// @return The delay before voting on a proposal may begin
     function votingDelay()
         public
         view
@@ -50,6 +58,8 @@ contract GovernorD4C is
         return super.votingDelay();
     }
 
+    /// @notice Returns the current voting period
+    /// @return The duration for which voting is open
     function votingPeriod()
         public
         view
@@ -59,6 +69,9 @@ contract GovernorD4C is
         return super.votingPeriod();
     }
 
+    /// @notice Returns the current quorum threshold for a given block
+    /// @param blockNumber The block number to check quorum for
+    /// @return The number of votes required for a quorum at the specified block
     function quorum(
         uint256 blockNumber
     )
@@ -70,6 +83,9 @@ contract GovernorD4C is
         return super.quorum(blockNumber);
     }
 
+     /// @notice Returns the current state of a proposal
+    /// @param proposalId The ID of the proposal to query
+    /// @return The state of the specified proposal
     function state(
         uint256 proposalId
     )
@@ -80,6 +96,7 @@ contract GovernorD4C is
     {
         return super.state(proposalId);
     }
+
 
     function proposalNeedsQueuing(
         uint256 proposalId
